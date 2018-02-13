@@ -1,12 +1,15 @@
 'use strict'
 import Assert from 'assert'
 import _debug from 'debug'
+import isElectron from 'is-electron'
+
 const debug = _debug('util')
 
 export const isStandardBrowserEnv = (
   typeof window !== 'undefined' &&
   typeof document !== 'undefined' &&
-  typeof document.createElement === 'function'
+  typeof document.createElement === 'function' &&
+  !isElectron()
 )
 
 export const isFunction = val => Object.prototype.toString.call(val) === '[object Function]'
